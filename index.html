@@ -1,0 +1,1437 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>田梦琳个人网站</title>
+    <style>
+        /* ========== 全局变量 统一规范 ========== */
+        :root {
+            --apple-blue: #0071e3;
+            --apple-dark: #1d1d1f;
+            --apple-gray: #86868b;
+            --apple-light: #f5f5f7;
+            --apple-white: #ffffff;
+
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+
+            --shadow-normal: 0 2px 12px rgba(0,0,0,0.06);
+            --shadow-hover: 0 6px 24px rgba(0,0,0,0.1);
+
+            --ease-apple: cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "SF Pro Display","SF Pro Icons","Helvetica Neue",Helvetica,Arial,sans-serif;
+            transition: all 0.3s var(--ease-apple);
+        }
+
+        body {
+            color: var(--apple-dark);
+            background: var(--apple-white);
+            line-height: 1.55;
+            letter-spacing: -0.02em;
+        }
+
+        /* ========== 导航栏 ========== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 44px;
+            background: #000000;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: #fff;
+            font-size: 18px;
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+        }
+        .nav-menu a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            font-size: 13px;
+            margin-left: 28px;
+        }
+        .nav-menu a:hover {
+            color: #fff;
+        }
+
+        .hamburger {
+            display: none;
+            color: #fff;
+            font-size: 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 44px;
+            left: 0;
+            width: 100%;
+            background: #000;
+            display: none;
+            flex-direction: column;
+            padding: 20px;
+            z-index: 9998;
+        }
+        .mobile-menu.show {
+            display: flex;
+        }
+        .mobile-menu a {
+            color: #fff;
+            text-decoration: none;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* ========== 区块通用 ========== */
+        .section {
+            width: 100%;
+            padding: 80px 0;
+        }
+
+        .container {
+            max-width: 1000px;
+            width: 100%;
+            padding: 0 40px;
+            margin: 0 auto;
+        }
+
+        /* 首页 */
+        #sec1 {
+            background: #fff;
+            text-align: center;
+            padding-top: 120px;
+        }
+        #sec1 h1 {
+            font-size: 52px;
+            line-height: 1.2;
+            margin-bottom: 24px;
+            letter-spacing: 2px;
+            font-weight: 600;
+            color: #000;
+        }
+        #sec1 p {
+            font-size: 18px;
+            color: var(--apple-gray);
+            max-width: 650px;
+            margin: 0 auto 60px;
+        }
+        .big-box {
+            width: 100%;
+            max-width: 900px;
+            height: 500px;
+            background: var(--apple-light);
+            border-radius: var(--radius-lg);
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--apple-gray);
+            box-shadow: var(--shadow-normal);
+            background-size: cover;
+            background-position: center;
+            transition: background-image 0.8s var(--ease-apple);
+        }
+
+        /* ========== 关于我 ========== */
+        #sec2 {
+            background: var(--apple-light);
+        }
+        .about-wrap {
+            display: grid;
+            grid-template-columns: 55% 45%;
+            gap: 40px;
+            align-items: center;
+        }
+        .about-text h2 {
+            font-size: 36px;
+            margin-bottom: 24px;
+            font-weight: 600;
+        }
+        .about-text p {
+            font-size: 16px;
+            color: var(--apple-gray);
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        .about-img {
+            width: 100%;
+            height: 380px;
+            background: #fff;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-normal);
+            border: 1px solid rgba(0,0,0,0.05);
+            margin-right: 40px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* ========== 工作经历 ========== */
+        #sec3 {
+            background: var(--apple-light);
+        }
+        .exp-top {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 0 40px;
+        }
+        .exp-top h2 {
+            font-size: 36px;
+            margin-bottom: 12px;
+            color: #000;
+            font-weight: 600;
+        }
+        .exp-top p {
+            color: var(--apple-gray);
+            font-size: 17px;
+        }
+        .exp-accordion {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .exp-card {
+            background: #fff;
+            border: 1px solid rgba(0,0,0,0.05);
+            border-radius: var(--radius-md);
+            padding: 24px;
+            box-shadow: var(--shadow-normal);
+        }
+        .exp-card:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-2px);
+        }
+        .exp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+        .exp-date {
+            color: var(--apple-blue);
+            font-size: 16px;
+            margin-bottom: 6px;
+        }
+        .exp-company {
+            font-size: 19px;
+            font-weight: 600;
+            color: #000;
+        }
+        .exp-toggle-btn {
+            border: 1px solid var(--apple-blue);
+            color: var(--apple-blue);
+            background: #fff;
+            padding: 6px 14px;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .exp-content {
+            display: none;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        .exp-content.open {
+            display: block;
+        }
+        .exp-content ul {
+            list-style: disc;
+            padding-left: 20px;
+            color: var(--apple-gray);
+            line-height: 1.8;
+        }
+
+        /* ========== 校园经历 ========== */
+        #sec4 { background: #fff; }
+        .campus-top {
+            text-align: left;
+            margin-bottom: 20px;
+            padding: 0 120px;
+        }
+        .campus-top h2 {
+            font-size: 36px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        .campus-top p { color: var(--apple-gray); }
+
+        .campus-slider-wrap {
+            position: relative;
+            padding: 0 120px;
+        }
+
+        .campus-slider-btn {
+            position: absolute;
+            top: 110px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(6px);
+            border: none;
+            color: #222;
+            font-size: 22px;
+            font-weight: 900;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .campus-slider-btn:hover {
+            background: rgba(255,255,255,0.35);
+        }
+        .campus-prev { left: 90px; }
+        .campus-next { right: 90px; }
+
+        .campus-slider {
+            display: flex;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            gap: 30px;
+            padding: 10px 0 20px;
+            scroll-snap-type: x mandatory;
+        }
+        .campus-slider::-webkit-scrollbar { display: none; }
+        .campus-slider { -ms-overflow-style: none; scrollbar-width: none; }
+
+        .campus-item {
+            flex: 0 0 auto;
+            width: 320px;
+            cursor: pointer;
+            scroll-snap-align: start;
+            background: #fff;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-normal);
+        }
+        .campus-item:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+        }
+        .campus-img-box {
+            width: 100%;
+            height: 220px;
+            background: var(--apple-light);
+            margin-bottom: 16px;
+            position: relative;
+            background-size: cover;
+            background-position: center;
+        }
+        .campus-item h3 {
+            font-size: 18px;
+            text-align: left;
+            margin-bottom: 6px;
+            padding: 0 12px;
+            font-weight: 600;
+        }
+        .campus-item p {
+            font-size: 14px;
+            color: var(--apple-gray);
+            text-align: left;
+            padding: 0 12px 16px;
+        }
+
+        /* ========== 自媒体与新媒体运营 ========== */
+        #sec5 {
+            background: var(--apple-light);
+            padding-top: 60px;
+        }
+        .skill-top {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 0 120px;
+        }
+        .skill-top h2 {
+            font-size: 36px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        .skill-top p {
+            color: var(--apple-gray);
+            font-size: 17px;
+        }
+        .skill-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            padding: 0 120px;
+        }
+        .card-lg {
+            grid-column: span 2;
+            grid-row: span 2;
+            background: #fff;
+            padding: 80px 30px;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-normal);
+            cursor: pointer;
+        }
+        .card-sm {
+            background: #fff;
+            padding: 55px 20px;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-normal);
+            cursor: pointer;
+        }
+        .card-lg:hover,.card-sm:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+        }
+        .card-lg h3, .card-sm h3 {
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        .card-lg p, .card-sm p {
+            color: var(--apple-gray);
+            font-size: 14px;
+        }
+
+        /* ========== 我的美工作品 ========== */
+        #sec6 {
+            background: #fff;
+        }
+        .work-top {
+            text-align: left;
+            margin-bottom: 40px;
+            padding: 0 120px;
+        }
+        .work-top h2 {
+            font-size: 36px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        .work-top p {
+            color: var(--apple-gray);
+        }
+        .work-card-wrapper {
+            background: var(--apple-light);
+            border-radius: var(--radius-lg);
+            padding: 30px;
+            margin: 0 120px;
+            box-shadow: var(--shadow-normal);
+        }
+        .work-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+            height: 100%;
+        }
+        .work-accordion {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            justify-content: center;
+        }
+        .work-item {
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+            padding: 18px 0;
+            cursor: pointer;
+        }
+        .work-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 24px;
+            font-weight: 500;
+        }
+        .work-toggle-icon {
+            font-size: 24px;
+            font-weight: 900;
+            transition: transform 0.3s var(--ease-apple);
+        }
+        .work-desc {
+            max-height: 0;
+            opacity: 0;
+            transform: scaleY(0.95);
+            transform-origin: top;
+            overflow: hidden;
+            transition: 
+                max-height 0.5s var(--ease-apple),
+                opacity 0.4s var(--ease-apple),
+                transform 0.4s var(--ease-apple);
+            color: var(--apple-gray);
+            margin-top: 0;
+        }
+        .work-desc.open {
+            max-height: 300px;
+            opacity: 1;
+            transform: scaleY(1);
+            margin-top: 12px;
+        }
+        .work-image-container {
+            display: flex;
+            justify-content: center;
+            align-items: start;
+            height: 100%;
+        }
+        .work-image {
+            width: 100%;
+            height: 520px; /* 固定高度，你可以改成520px */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            overflow: hidden; /* 防止图片超出容器 */
+            background: var(--apple-light);
+        }
+        .work-image img {
+            height: 100%; /* 让图片高度填满容器 */
+            width: auto; /* 宽度自动，保持比例 */
+            object-fit: contain; /* 保证图片完整显示 */
+        }
+        .work-img-controls {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 20px;
+        }
+        .work-img-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: none;
+            background: #fff;
+            color: #000;
+            cursor: pointer;
+            box-shadow: var(--shadow-normal);
+        }
+
+        /* ========== 联系我 ========== */
+        #sec7 {
+            background: var(--apple-light);
+            text-align: center;
+            padding: 120px 40px;
+        }
+        #sec7 h2 {
+            font-size: 42px;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+        .contact-list p {
+            font-size: 18px;
+            margin: 16px 0;
+        }
+        .contact-list span {
+            color: var(--apple-gray);
+            margin-left: 10px;
+        }
+
+        /* 底部版权 */
+        .footer-copy {
+            text-align: center;
+            padding: 30px 0;
+            font-size: 14px;
+            color: var(--apple-gray);
+            border-top: 1px solid rgba(0,0,0,0.05);
+        }
+
+        /* ========== 弹窗 ========== */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.25);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .modal.active {
+            display: flex;
+        }
+        .modal-content {
+            background: #fff;
+            border-radius: var(--radius-lg);
+            max-width: 700px;
+            width: 100%;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        }
+        .modal-img-container {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            background: var(--apple-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+            background-size: cover;
+            background-position: center;
+            transition: background-image 0.5s var(--ease-apple);
+        }
+        .modal-img-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(4px);
+            border: none;
+            color: #fff;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        .modal-img-btn.prev { left: 20px; }
+        .modal-img-btn.next { right: 20px; }
+        .modal-body { padding: 30px; }
+        .modal-title { color: var(--apple-blue); text-align: center; margin-bottom: 10px; font-weight: 600; }
+        .modal-time { color: var(--apple-blue); text-align: center; margin-bottom: 20px; }
+        .modal-subtitle { font-weight: 600; margin-bottom: 15px; color: #000; }
+        .modal-list { color: var(--apple-gray); line-height: 1.7; padding-left: 20px; }
+        .modal-close-btn {
+            width: 100%; background: var(--apple-dark); color: #fff;
+            border: none; padding: 12px; border-radius: var(--radius-sm);
+            cursor: pointer; margin-top: 20px;
+        }
+
+        /* 公众号文章卡片样式 */
+        .wechat-card {
+            display: flex;
+            background: #f5f5f7;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 16px;
+            text-decoration: none;
+            color: inherit;
+        }
+        .wechat-card-text {
+            flex: 1;
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .wechat-card-title {
+            font-size: 15px;
+            font-weight: 500;
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .wechat-card-desc {
+            font-size: 13px;
+            color: #86868b;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+        .wechat-card-divider {
+            border-bottom: 1px solid #e5e5e5;
+            margin: 8px 0;
+        }
+        .wechat-card-footer {
+            display: flex;
+            align-items: center;
+            margin-top: 8px;
+        }
+        .wechat-card-avatar {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #ddd;
+            margin-right: 6px;
+        }
+        .wechat-card-name {
+            font-size: 12px;
+            color: #86868b;
+        }
+        .wechat-card-img {
+            width: 90px;
+            height: 90px;
+            object-fit: cover;
+        }
+
+        /* Word文档预览样式 */
+        .word-preview {
+            background: #f5f5f7;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            margin-top: 16px;
+        }
+        .word-icon {
+            width: 48px;
+            height: 48px;
+            background: #2b579a;
+            border-radius: 4px;
+            margin: 0 auto 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        /* ========== 响应式适配 ========== */
+        @media (max-width: 768px) {
+            .nav-menu {display: none;}
+            .hamburger {display: block;}
+            .about-wrap {grid-template-columns: 1fr; gap:40px;}
+            .about-img {margin-right: 0;}
+            .skill-grid {grid-template-columns: 1fr 1fr;}
+            .card-lg {grid-column: span 2;}
+            #sec1 h1 {font-size: 32px;}
+            .work-container {grid-template-columns: 1fr; gap:30px;}
+            .work-image-container {order:-1;}
+            .work-card-wrapper {padding:20px; margin:0 40px;}
+            .campus-slider-btn {width:36px; height:36px; font-size:18px;}
+            .campus-prev { left: 30px; }
+            .campus-next { right: 30px; }
+            .campus-top,.campus-slider-wrap,.skill-top,.skill-grid,.work-top{
+                padding-left:40px; padding-right:40px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- 导航 -->
+<nav class="navbar">
+    <div class="navbar-container">
+        <a href="#" class="logo">My Site</a>
+        <div class="nav-menu">
+            <a href="#sec1">首页</a>
+            <a href="#sec2">关于我</a>
+            <a href="#sec3">工作经历</a>
+            <a href="#sec4">校园经历</a>
+            <a href="#sec5">自媒体与新媒体运营</a>
+            <a href="#sec6">我的美工作品集</a>
+            <a href="#sec7">联系我</a>
+        </div>
+        <button class="hamburger">☰</button>
+    </div>
+</nav>
+<div class="mobile-menu">
+    <a href="#sec1">首页</a>
+    <a href="#sec2">关于我</a>
+    <a href="#sec3">工作经历</a>
+    <a href="#sec4">校园经历</a>
+    <a href="#sec5">自媒体与新媒体运营</a>
+    <a href="#sec6">我的美工作品集</a>
+    <a href="#sec7">联系我</a>
+</div>
+
+<!-- 首页 -->
+<section class="section" id="sec1">
+    <div class="container">
+        <h1>STAY HUNGRY<br>STAY FOOLISH</h1>
+        <p>「我们存在于一生仅此一次的当下」</p>
+        <div class="big-box">首页主视觉展示区</div>
+    </div>
+</section>
+
+<!-- 关于我 -->
+<section class="section" id="sec2">
+    <div class="container">
+        <div class="about-wrap">
+            <div class="about-text">
+                <h2>关于我</h2>
+                <p>生活记录者</p>
+                <p>沉迷绘画、摄影与自然，运动与旅行是日常充电方式</p>
+                <p>愿在细节中翻译美好，与你分享热爱的一切</p>
+            </div>
+            <div class="about-img">个人形象展示区</div>
+        </div>
+    </div>
+</section>
+
+<!-- 工作经历 -->
+<section class="section" id="sec3">
+    <div class="exp-top">
+        <h2>工作经历</h2>
+        <p>过往实习沉淀，展现我的专业能力与成长轨迹</p>
+    </div>
+    <div class="exp-accordion">
+        <div class="exp-card">
+            <div class="exp-header" onclick="toggleExp(0)">
+                <div class="exp-header-left">
+                    <div class="exp-date">2025.12 - 2026.03</div>
+                    <div class="exp-company">四川语言桥信息技术有限公司 | 项目助理（实习）</div>
+                </div>
+                <button class="exp-toggle-btn">详情</button>
+            </div>
+            <div class="exp-content">
+                <ul>
+                    <li>独立负责<strong>短视频出海项目全链路管理</strong>（客户素材对接→打轴→翻译→后期→交付→客户反馈修改→最终交付），累计支持<strong>100</strong>余个短视频项目顺利交付</li>
+                    <li>参与<strong>视频成片内容审核</strong>，从字幕同步到视听呈现进行多维度把关</li>
+                    <li>独立完成<strong>后期工作量核算</strong>，为团队成本控制与绩效评估提供数据支持</li>
+                </ul>
+            </div>
+        </div>
+        <div class="exp-card">
+            <div class="exp-header" onclick="toggleExp(1)">
+                <div class="exp-header-left">
+                    <div class="exp-date">2024.03 - 2024.08</div>
+                    <div class="exp-company">眉山天府新区市场监督管理局 | 食品监管股工作人员</div>
+                </div>
+                <button class="exp-toggle-btn">详情</button>
+            </div>
+            <div class="exp-content">
+                <ul>
+                    <li>负责食品专项行动成果<strong>报告及新闻稿撰写</strong>，独立完成<strong>10</strong>余篇</li>
+                    <li>开展食品生产、流通、餐饮环节的现场检查，督促问题整改</li>
+                    <li>依法处置消费者食品安全投诉与举报，解决纠纷<strong>50</strong>余件，具备优秀沟通与抗压能力</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 校园经历 -->
+<section class="section" id="sec4">
+    <div class="campus-top">
+        <h2>校园经历</h2>
+        <p>丰富的校园实践与志愿经历，锻炼综合能力</p>
+    </div>
+    <div class="campus-slider-wrap">
+        <button class="campus-slider-btn campus-prev">‹</button>
+        <div class="campus-slider" id="campusSlider">
+            <div class="campus-item" data-modal="modal1">
+                <div class="campus-img-box" style="background-image: url('images/sport01.jpg')"></div>
+                <h3>世运会翻译</h3>
+                <p>NOC随员翻译（口译）</p>
+            </div>
+            <div class="campus-item" data-modal="modal2">
+                <div class="campus-img-box" style="background-image: url('images/cihai01.jpg')"></div>
+                <h3>《辞海》项目</h3>
+                <p>翻译与校对</p>
+            </div>
+            <div class="campus-item" data-modal="modal3">
+                <div class="campus-img-box" style="background-image: url('images/redcross01.jpg')"></div>
+                <h3>红十字会</h3>
+                <p>副会长 → 会长</p>
+            </div>
+            <div class="campus-item" data-modal="modal4">
+                <div class="campus-img-box" style="background-image: url('images/studentunion.jpg')"></div>
+                <h3>校学生会</h3>
+                <p>媒体宣传部干事</p>
+            </div>
+        </div>
+        <button class="campus-slider-btn campus-next">›</button>
+    </div>
+</section>
+
+<!-- 弹窗 -->
+<div class="modal" id="modal1">
+    <div class="modal-content">
+        <div class="modal-img-container">
+            <button class="modal-img-btn prev" onclick="prevModalImg(1)">&lt;</button>
+            <button class="modal-img-btn next" onclick="nextModalImg(1)">&gt;</button>
+        </div>
+        <div class="modal-body">
+            <div class="modal-title">成都世界运动会执委会人力资源部（志愿者部）</div>
+            <div class="modal-time">2025.07 - 2025.08 | NOC随员翻译（口译）</div>
+            <div class="modal-subtitle">专业语言能力，卓越应变能力与服务意识</div>
+            <ul class="modal-list">
+                <li>为<strong>国家代表团官员及运动员</strong>提供陪同翻译与联络服务，服务时长<strong>184</strong>小时；</li>
+                <li>精准对接组委会各职能部门，保障日常行程与赛事活动的衔接。</li>
+            </ul>
+            <button class="modal-close-btn">关闭</button>
+        </div>
+    </div>
+</div>
+<div class="modal" id="modal2">
+    <div class="modal-content">
+        <div class="modal-img-container">
+            <button class="modal-img-btn prev" onclick="prevModalImg(2)">&lt;</button>
+            <button class="modal-img-btn next" onclick="nextModalImg(2)">&gt;</button>
+        </div>
+        <div class="modal-body">
+            <div class="modal-title">西南交通大学外国语学院</div>
+            <div class="modal-time">2025.05 - 2025.08 | 《辞海》项目翻译组</div>
+            <div class="modal-subtitle">专业翻译能力与团队协作精神</div>
+            <ul class="modal-list">
+                <li>参与《辞海》项目翻译工作（涉及中国文化、历史地理、宗教学），累计翻译字数<strong>10,000</strong>余字；</li>
+                <li>与团队成员高效协作，积极沟通，协同解决翻译难点。</li>
+            </ul>
+            <button class="modal-close-btn">关闭</button>
+        </div>
+    </div>
+</div>
+<div class="modal" id="modal3">
+    <div class="modal-content">
+        <div class="modal-img-container">
+            <button class="modal-img-btn prev" onclick="prevModalImg(3)">&lt;</button>
+            <button class="modal-img-btn next" onclick="nextModalImg(3)">&gt;</button>
+        </div>
+        <div class="modal-body">
+            <div class="modal-title">天津外国语大学红十字会</div>
+            <div class="modal-time">2020.03 - 2021.03 | 副会长 → 会长</div>
+            <div class="modal-subtitle">优秀团队管理与组织协调能力，出色项目策划与执行力，以及良好的社会责任意识</div>
+            <ul class="modal-list">
+                <li><strong>全面统筹</strong>协会日常事务，协调各部门开展造血干细胞捐献、应急救护、“YABC”同伴教育等<strong>品牌活动</strong>；</li>
+                <li>组织完成天津市红十字会交办任务；</li>
+                <li>在任期间，协会曾获天津外国语大学<strong>十佳社团</strong>称号，<strong>全国红十字模范单位</strong>称号</li>
+            </ul>
+            <a href="files/hongshizi.pdf" target="_blank" style="text-decoration:none;">
+            <div class="word-preview">
+                <div class="word-icon" style="background:#e53935;color:#fff;">PDF</div>
+                <p style="color:#86868b;font-size:14px;">造血干细胞捐献-活动策划案例分析.pdf</p>
+            </div>
+            </a>
+            <button class="modal-close-btn">关闭</button>
+        </div>
+    </div>
+</div>
+<div class="modal" id="modal4">
+    <div class="modal-content">
+        <div class="modal-img-container">
+            <button class="modal-img-btn prev" onclick="prevModalImg(4)">&lt;</button>
+            <button class="modal-img-btn next" onclick="nextModalImg(4)">&gt;</button>
+        </div>
+        <div class="modal-body">
+            <div class="modal-title">天津外国语大学学生会</div>
+            <div class="modal-time">2019.09 - 2020.06 | 媒体宣传部干事</div>
+            <div class="modal-subtitle">扎实的内容策划与视觉表达能力，良好的新媒体素养与平台运营能力</div>
+            <ul class="modal-list">
+                <li>独立负责宣传素材<strong>拍摄与文案撰写</strong>，独立撰写<strong>10</strong>余篇稿件；</li>
+                <li>管理公众号日常<strong>运营与内容发布</strong>。</li>
+            </ul>
+            <button class="modal-close-btn">关闭</button>
+        </div>
+    </div>
+</div>
+
+<!-- 自媒体与新媒体运营 -->
+<section class="section" id="sec5">
+    <div class="skill-top">
+        <h2>自媒体与新媒体运营</h2>
+        <p>多元技能储备，覆盖运营、排版、文案全维度</p>
+    </div>
+    <div class="skill-grid">
+        <div class="card-lg" data-modal="modal5">
+            <h3>公众号排版编辑</h3>
+            <p>版式设计、图文美化、阅读体验优化</p>
+        </div>
+        <div class="card-sm" data-modal="modal6">
+            <h3>视觉摄影配图</h3>
+            <p>拍摄、修图、素材搭配，提升内容视觉质感</p>
+        </div>
+        <div class="card-sm" data-modal="modal7">
+            <h3>文案内容创作</h3>
+            <p>原创文案、标题优化，用文字传递温度与价值</p>
+        </div>
+        <div class="card-sm" data-modal="modal8">
+            <h3>抖音账号全案运营</h3>
+            <p>选题、剪辑、发布、复盘、账号增长</p>
+        </div>
+        <div class="card-sm" data-modal="modal9">
+            <h3>自媒体账号分析</h3>
+            <p>数据复盘、竞品对标、策略优化</p>
+        </div>
+    </div>
+</section>
+
+<!-- 自媒体弹窗 -->
+<div class="modal" id="modal5">
+    <div class="modal-content">
+        <div class="modal-body">
+            <div class="modal-title">公众号排版编辑</div>
+            <p style="text-align:center;color:#86868b;margin-bottom:20px;">点击卡片可跳转查看原文</p>
+            <a href="https://mp.weixin.qq.com/s/ZHFiaZQEAiTYcoS_anEdxQ" class="wechat-card" target="_blank">
+                <div class="wechat-card-text">
+                    <div class="wechat-card-title">SU迎新季 | 一封来自参与学校民主管理委员会的邀请函</div>
+                    <div class="wechat-card-desc">参与学校民主管理委员会，名字最长，名字最酷，属于天外自己的有...</div>
+                    <div class="wechat-card-divider"></div>
+                    <div class="wechat-card-footer">
+                        <div class="wechat-card-avatar" style="background-image: url('images/studentunion.jpg'); background-size: cover;"></div>
+                        <span class="wechat-card-name">天津外国语大学学生会</span>
+                    </div>
+                </div>
+                <img class="wechat-card-img" src="images/mg.jpg" alt="封面图">
+            </a>
+            <a href="https://mp.weixin.qq.com/s/jQUiv8bg5ETDIBeMOK1d9Q" class="wechat-card" target="_blank">
+                <div class="wechat-card-text">
+                    <div class="wechat-card-title">“艾的信笺，诗的韵歌——天津外国语大学中英诗歌大赛...</div>
+                    <div class="wechat-card-desc">“艾的信笺，诗的韵歌”——天津外国语大学中英诗歌大赛是由学生处主办、校红十字会...</div>
+                    <div class="wechat-card-divider"></div>
+                    <div class="wechat-card-footer">
+                        <div class="wechat-card-avatar" style="background-image: url('images/TFSUxg.jpg'); background-size: cover;"></div>
+                        <span class="wechat-card-name">天外学工</span>
+                    </div>
+                </div>
+                <img class="wechat-card-img" src="images/sgds.jpg" alt="封面图">
+            </a>
+            <a href="https://mp.weixin.qq.com/s/Khm2tde75fko-QxT3HuiYg" class="wechat-card" target="_blank">
+                <div class="wechat-card-text">
+                    <div class="wechat-card-title">“不吸烟 我健康 我时尚”短视频大赛等你来！</div>
+                    <div class="wechat-card-desc">今年世界无烟日的主题为“保护青少年远离传统烟草产品和电子烟”，河西区...</div>
+                    <div class="wechat-card-divider"></div>
+                    <div class="wechat-card-footer">
+                        <div class="wechat-card-avatar" style="background-image: url('images/TFSUxg.jpg'); background-size: cover;"></div>
+                        <span class="wechat-card-name">天外学工</span>
+                    </div>
+                </div>
+                <img class="wechat-card-img" src="images/jy.jpg" alt="封面图">
+            </a>
+            <a href="https://mp.weixin.qq.com/s/uf0I4Y8Noh5Mv49HpmHiVg" class="wechat-card" target="_blank">
+                <div class="wechat-card-text">
+                    <div class="wechat-card-title">【崇德】捐物赠暖，“书”送希望——毕业生捐款捐物献爱心活动开始啦 ！</div>
+                    <div class="wechat-card-desc">学校向2020届毕业生发起“捐物赠暖，书送希望”捐书捐物献爱心活动，号召...</div>
+                    <div class="wechat-card-divider"></div>
+                    <div class="wechat-card-footer">
+                        <div class="wechat-card-avatar" style="background-image: url('images/TFSUxg.jpg'); background-size: cover;"></div>
+                        <span class="wechat-card-name">天外学工</span>
+                    </div>
+                </div>
+                <img class="wechat-card-img" src="images/jw.jpg" alt="封面图">
+            </a>
+            <button class="modal-close-btn">关闭</button>
+        </div>
+    </div>
+</div>
+<div class="modal" id="modal6">
+    <div class="modal-content">
+        <div class="modal-body">
+            <div class="modal-title">视觉摄影配图</div>
+            <p style="text-align:center;color:#86868b;margin-bottom:20px;">公众号文章配图作品展示</p>
+            <a href="https://mp.weixin.qq.com/s/s6WWf1l0G10jpqljMofSYg" class="wechat-card" target="_blank">
+                <div class="wechat-card-text">
+                    <div class="wechat-card-title">天津市高校红十字会工作示范交流会在我校召开</div>
+                    <div class="wechat-card-desc">10月19日，天津市高校红十字会工作示范交流会在我校召开...</div>
+                    <div class="wechat-card-divider"></div>
+                    <div class="wechat-card-footer">
+                        <div class="wechat-card-avatar" style="background-image: url('images/TFSU.jpg'); background-size: cover;"></div>
+                        <span class="wechat-card-name">天津外国语大学</span>
+                    </div>
+                </div>
+                <img class="wechat-card-img" src="images/hsz.jpg" alt="封面图">
+            </a>
+            <a href="https://mp.weixin.qq.com/s/TWm8AiE9Xmq6SpEmbziMbg" class="wechat-card" target="_blank">
+                <div class="wechat-card-text">
+                    <div class="wechat-card-title">【崇德】跋山涉水遇见你--2019天津市红十字会骨干训练营</div>
+                    <div class="wechat-card-desc">天津市红十字第六届青年骨干培训开班仪式在逸夫楼大江厅举办...</div>
+                    <div class="wechat-card-divider"></div>
+                    <div class="wechat-card-footer">
+                        <div class="wechat-card-avatar" style="background-image: url('images/TFSUxg.jpg'); background-size: cover;"></div>
+                        <span class="wechat-card-name">天外学工</span>
+                    </div>
+                </div>
+                <img class="wechat-card-img" src="images/ggy01.jpg" alt="封面图">
+            </a>
+            <a href="https://mp.weixin.qq.com/s/e6-3e84cQLX27Ime_ac91Q" class="wechat-card" target="_blank">
+                <div class="wechat-card-text">
+                    <div class="wechat-card-title">街拍 | 秋冬碎片收纳机</div>
+                    <div class="wechat-card-desc">十一月的津城已经开始有了寒意 大风预警敲响后 遍地都是黄叶舞蹈的样子...</div>
+                    <div class="wechat-card-divider"></div>
+                    <div class="wechat-card-footer">
+                        <div class="wechat-card-avatar" style="background-image: url('images/studentunion.jpg'); background-size: cover;"></div>
+                        <span class="wechat-card-name">天津外国语大学</span>
+                    </div>
+                </div>
+                <img class="wechat-card-img" src="images/jp.jpg" alt="封面图">
+            </a>
+            <button class="modal-close-btn">关闭</button>
+        </div>
+    </div>
+</div>
+<div class="modal" id="modal7">
+    <div class="modal-content">
+        <div class="modal-body">
+            <div class="modal-title">文案内容创作</div>
+            <p style="text-align:center;color:#86868b;margin-bottom:20px;">原创文案作品展示</p>
+            <a href="https://mp.weixin.qq.com/s/0xdFw9LIwyq2gyEai2gqiw" class="wechat-card" target="_blank">
+                <div class="wechat-card-text">
+                    <div class="wechat-card-title">【崇德】跋山涉水遇见你——2019天津市红十字会骨干训练营（三）</div>
+                    <div class="wechat-card-desc">新的一天，依然从非常神奇的内心平和训练开始。教练组带领学员们...</div>
+                    <div class="wechat-card-divider"></div>
+                    <div class="wechat-card-footer">
+                        <div class="wechat-card-avatar" style="background-image: url('images/TFSUxg.jpg'); background-size: cover;"></div>
+                        <span class="wechat-card-name">天外学工</span>
+                    </div>
+                </div>
+                <img class="wechat-card-img" src="images/ggy02.jpg" alt="封面图">
+            </a>
+            <button class="modal-close-btn">关闭</button>
+        </div>
+    </div>
+</div>
+<div class="modal" id="modal8">
+    <div class="modal-content">
+        <div class="modal-img-container" style="background-image:url('images/dy.jpg')">
+        </div>
+        <div class="modal-body">
+            <div class="modal-title">抖音账号全案运营</div>
+            <div class="modal-subtitle">账号运营展示</div>
+            <ul class="modal-list">
+                <li>独立负责账号<strong>选题策划、脚本撰写、拍摄剪辑、发布运营</strong>全流程；</li>
+                <li>通过内容优化与数据复盘，实现账号播放量的稳定增长。</li>
+            </ul>
+            <button class="modal-close-btn">关闭</button>
+        </div>
+    </div>
+</div>
+<div class="modal" id="modal9">
+    <div class="modal-content">
+        <div class="modal-body">
+            <div class="modal-title">自媒体账号分析</div>
+            <div class="modal-subtitle">数据复盘与竞品对标分析报告</div>
+            <p class="modal-list">通过对账号运营数据、用户画像、内容表现的多维度分析，结合竞品对标，制定优化策略，提升账号整体运营效率。</p>
+            <a href="files/media.pdf" target="_blank" style="text-decoration:none;">
+            <div class="word-preview">
+                <div class="word-icon" style="background:#e53935;color:#fff;">PDF</div>
+                <p style="color:#86868b;font-size:14px;">抖音账号运营分析报告.pdf</p>
+            </div>
+            </a>
+            <button class="modal-close-btn">关闭</button>
+        </div>
+    </div>
+</div>
+
+<!-- 我的美工作品集 -->
+<section class="section" id="sec6">
+    <div class="work-top">
+        <h2>我的美工作品集</h2>
+        <p>点击左侧栏目，查看不同类作品</p>
+    </div>
+    <div class="work-card-wrapper">
+        <div class="work-container">
+            <div class="work-accordion">
+                <div class="work-item" onclick="switchWork(0)">
+                    <div class="work-header">
+                        <span>人物海报</span>
+                        <span class="work-toggle-icon">⌄</span>
+                    </div>
+                    <p class="work-desc">每一张海报都是精心打磨的视觉艺术品。用极具冲击力的构图与光影质感，定格明星人物的高光瞬间。</p>
+                </div>
+                <div class="work-item" onclick="switchWork(1)">
+                    <div class="work-header">
+                        <span>专辑包装</span>
+                        <span class="work-toggle-icon">⌄</span>
+                    </div>
+                    <p class="work-desc">每一个包裹都像一份精心准备的小礼物。让拆箱充满期待与惊喜，为车员们打造省心又温暖的拼车体验。</p>
+                </div>
+                <div class="work-item" onclick="switchWork(2)">
+                    <div class="work-header">
+                        <span>手工作品</span>
+                        <span class="work-toggle-icon">⌄</span>
+                    </div>
+                    <p class="work-desc">每一件作品都是一个独一无二的故事。这里有指尖的温度与时间的痕迹，用石塑黏土捏出软萌治愈的小物，在手账拼贴里封存生活的碎碎念念。</p>
+                </div>
+            </div>
+            <div class="work-image-container">
+                <div>
+                    <div class="work-image" id="work-image">人物海报预览图</div>
+                    <div class="work-img-controls">
+                        <button class="work-img-btn" onclick="prevImg()">←</button>
+                        <button class="work-img-btn" onclick="nextImg()">→</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 联系我 -->
+<section class="section" id="sec7">
+    <div class="container">
+        <h2>联系我</h2>
+        <div class="contact-list">
+            <p>邮箱 <span>1055179037@qq.com</span></p>
+            <p>电话 <span>130-9602-9016</span></p>
+            <p>地址 <span>四川省成都市金牛区西南交通大学</span></p>
+        </div>
+    </div>
+</section>
+
+<!-- 底部版权 -->
+<div class="footer-copy">© 2026 田梦琳 | stay hungry, stay foolish</div>
+
+<script>
+    // ==========================
+    // 🖼️ 所有需要放图片的位置 都在这里！
+    // 你只需要修改这里的文件名，别的都别动！
+    // ==========================
+
+    // 1. 首页轮播大图（8张）
+    const bannerImages = [
+        "images/banner01.jpg",
+        "images/banner02.jpg",
+        "images/banner03.jpg",
+        "images/banner04.jpg",
+        "images/banner05.jpg",
+        "images/banner06.jpg",
+        "images/banner07.jpg"
+    ];
+
+    // 2. 关于我 - 个人形象照（1张）
+    const avatarImg = "images/avatar.jpg";
+
+    // 3. 校园弹窗1：世运会（5张）
+    const modal1Imgs = [
+        "images/sport01.jpg",
+        "images/sport02.jpg",
+        "images/sport03.jpg",
+        "images/sport04.jpg",
+        "images/sport05.jpg"
+    ];
+
+    // 4. 校园弹窗2：辞海（2张）
+    const modal2Imgs = [
+        "images/cihai01.jpg",
+        "images/cihai02.jpg"
+    ];
+
+    // 5. 校园弹窗3：红十字会（4张）
+    const modal3Imgs = [
+        "images/redcross01.jpg",
+        "images/redcross02.jpg",
+        "images/redcross03.jpg",
+        "images/redcross04.jpg"
+    ];
+
+    // 6. 校园弹窗4：校学生会（1张）
+    const modal4Imgs = [
+        "images/studentunion.jpg"
+    ];
+
+    // 7. 美工作品集（严格对应：3+1+2）
+    const workImages = [
+        // 人物海报 3张
+        "images/poster01.jpg",
+        "images/poster02.jpg",
+        "images/poster03.jpg",
+        // 专辑包装 1张
+        "images/album.jpg",
+        // 手工作品 4张
+        "images/handmade01.jpg",
+        "images/handmade02.jpg",
+        "images/handmade03.jpg",
+        "images/handmade04.jpg"
+    ];
+
+    // ==========================
+    // 以下代码 完全不用修改！
+    // ==========================
+
+    // 汉堡菜单
+    const hamburger = document.querySelector('.hamburger');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    hamburger.addEventListener('click', () => {
+        mobileMenu.classList.toggle('show');
+    });
+    document.querySelectorAll('.mobile-menu a').forEach(link => {
+        link.addEventListener('click', () => mobileMenu.classList.remove('show'));
+    });
+
+    // 工作经历折叠
+    function toggleExp(index) {
+        const cards = document.querySelectorAll('.exp-card');
+        const content = cards[index].querySelector('.exp-content');
+        const btn = cards[index].querySelector('.exp-toggle-btn');
+        content.classList.toggle('open');
+        btn.textContent = content.classList.contains('open') ? '收起' : '详情';
+    }
+
+    // 校园经历轮播
+    const slider = document.getElementById('campusSlider');
+    const prevBtn = document.querySelector('.campus-prev');
+    const nextBtn = document.querySelector('.campus-next');
+    const itemWidth = 350;
+    nextBtn.addEventListener('click', () => {
+        if (slider.scrollLeft + slider.clientWidth >= slider.scrollWidth - 50) {
+            slider.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+            slider.scrollBy({ left: itemWidth, behavior: 'smooth' });
+        }
+    });
+    prevBtn.addEventListener('click', () => {
+        if (slider.scrollLeft <= 50) {
+            slider.scrollTo({ left: slider.scrollWidth, behavior: 'smooth' });
+        } else {
+            slider.scrollBy({ left: -itemWidth, behavior: 'smooth' });
+        }
+    });
+
+    // 弹窗控制
+    const campusItems = document.querySelectorAll('.campus-item[data-modal]');
+    const modals = document.querySelectorAll('.modal');
+    const closeBtns = document.querySelectorAll('.modal-close-btn');
+    campusItems.forEach(item => {
+        item.addEventListener('click', () => {
+            const id = item.dataset.modal;
+            document.getElementById(id).classList.add('active');
+            if(id === 'modal1') { m1Idx = 0; initModalImg(1, m1Idx); }
+            if(id === 'modal2') { m2Idx = 0; initModalImg(2, m2Idx); }
+            if(id === 'modal3') { m3Idx = 0; initModalImg(3, m3Idx); }
+            if(id === 'modal4') { m4Idx = 0; initModalImg(4, m4Idx); }
+        });
+    });
+    const skillCards = document.querySelectorAll('.card-lg[data-modal],.card-sm[data-modal]');
+    skillCards.forEach(item => {
+        item.addEventListener('click', () => {
+            const id = item.dataset.modal;
+            document.getElementById(id).classList.add('active');
+        });
+    });
+    closeBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            modals.forEach(m => m.classList.remove('active'));
+        });
+    });
+    modals.forEach(m => {
+        m.addEventListener('click', e => {
+            if(e.target === m) m.classList.remove('active');
+        });
+    });
+
+    // 美工作品切换
+    // 美工作品切换 隔离分组版
+const workDescs = document.querySelectorAll('.work-desc');
+const workIcons = document.querySelectorAll('.work-toggle-icon');
+const workImage = document.getElementById('work-image');
+
+// 分组独立索引 + 每组图片范围
+const workGroup = {
+  poster:  { start: 0, end: 2, idx: 0 },    // 人物海报 0~2 共3张
+  album:   { start: 3, end: 3, idx: 3 },    // 专辑包装 仅第3张
+  handmade:{ start: 4, end: 7, idx: 4 }     // 手工作品 4~7 共4张
+};
+let nowGroup = 'poster';
+
+// 切换左侧栏目
+function switchWork(index) {
+  workDescs.forEach(desc => desc.classList.remove('open'));
+  workIcons.forEach(icon => icon.style.transform = 'rotate(0deg)');
+  workDescs[index].classList.add('open');
+  workIcons[index].style.transform = 'rotate(180deg)';
+
+  // 绑定对应分组
+  if(index === 0) nowGroup = 'poster';
+  if(index === 1) nowGroup = 'album';
+  if(index === 2) nowGroup = 'handmade';
+
+  // 切换视图
+  showCurrWorkImg();
+}
+
+// 上一张
+function prevImg() {
+  const g = workGroup[nowGroup];
+  // 单张直接禁止切换
+  if(g.start === g.end) return;
+  
+  g.idx--;
+  if(g.idx < g.start) g.idx = g.end;
+  showCurrWorkImg();
+}
+
+// 下一张
+function nextImg() {
+  const g = workGroup[nowGroup];
+  if(g.start === g.end) return;
+
+  g.idx++;
+  if(g.idx > g.end) g.idx = g.start;
+  showCurrWorkImg();
+}
+
+// 统一渲染图片
+function showCurrWorkImg(){
+  const imgEl = workImage.querySelector('img');
+  workImage.style.opacity = 0;
+  setTimeout(() => {
+    imgEl.src = workImages[workGroup[nowGroup].idx];
+    workImage.style.opacity = 1;
+  }, 150);
+}
+
+// 初始化
+workImage.innerHTML = `<img src="${workImages[0]}">`;
+switchWork(0);
+
+    // 首页轮播
+    let bannerIdx = 0;
+    const bigBox = document.querySelector('.big-box');
+    function initBanner() {
+        bigBox.style.backgroundImage = `url(${bannerImages[bannerIdx]})`;
+        bigBox.textContent = '';
+    }
+    function autoPlayBanner() {
+        bannerIdx = (bannerIdx + 1) % bannerImages.length;
+        bigBox.style.backgroundImage = `url(${bannerImages[bannerIdx]})`;
+    }
+    initBanner();
+    setInterval(autoPlayBanner, 3000);
+
+    // 个人形象图
+    document.querySelector('.about-img').style.backgroundImage = `url(${avatarImg})`;
+    document.querySelector('.about-img').textContent = '';
+
+    // 弹窗图片切换
+    let m1Idx = 0, m2Idx = 0, m3Idx = 0, m4Idx = 0;
+    function initModalImg(type, idx) {
+        const el = document.querySelector(`#modal${type} .modal-img-container`);
+        if(type === 1) el.style.backgroundImage = `url(${modal1Imgs[idx]})`;
+        if(type === 2) el.style.backgroundImage = `url(${modal2Imgs[idx]})`;
+        if(type === 3) el.style.backgroundImage = `url(${modal3Imgs[idx]})`;
+        if(type === 4) el.style.backgroundImage = `url(${modal4Imgs[idx]})`;
+        el.textContent = '';
+    }
+    function prevModalImg(type) {
+        if(type === 1) { m1Idx = (m1Idx - 1 + modal1Imgs.length) % modal1Imgs.length; initModalImg(1, m1Idx); }
+        if(type === 2) { m2Idx = (m2Idx - 1 + modal2Imgs.length) % modal2Imgs.length; initModalImg(2, m2Idx); }
+        if(type === 3) { m3Idx = (m3Idx - 1 + modal3Imgs.length) % modal3Imgs.length; initModalImg(3, m3Idx); }
+        if(type === 4) { m4Idx = (m4Idx - 1 + modal4Imgs.length) % modal4Imgs.length; initModalImg(4, m4Idx); }
+    }
+    function nextModalImg(type) {
+        if(type === 1) { m1Idx = (m1Idx + 1) % modal1Imgs.length; initModalImg(1, m1Idx); }
+        if(type === 2) { m2Idx = (m2Idx + 1) % modal2Imgs.length; initModalImg(2, m2Idx); }
+        if(type === 3) { m3Idx = (m3Idx + 1) % modal3Imgs.length; initModalImg(3, m3Idx); }
+        if(type === 4) { m4Idx = (m4Idx + 1) % modal4Imgs.length; initModalImg(4, m4Idx); }
+    }
+</script>
+
+</body>
+</html>
